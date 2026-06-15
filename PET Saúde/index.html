@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>PET Saúde Digital | Maternidade Santa Mônica · UNCISAL</title>
+    <meta name="description" content="Programa de Educação pelo Trabalho para a Saúde PET Saúde Digital da Maternidade Santa Mônica (MESM) - UNCISAL. Pesquisa, inovação e tecnologia em saúde materno-infantil.">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- GSAP & Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F4B5A',    // Azul petróleo (UNCISAL / base)
+                        secondary: '#009C3B',  // Verde saúde (MESM / SUS)
+                        accent: '#0064B1',    // Azul vibrante (PET / tecnologia)
+                        warm: '#F39C12',      // Laranja acolhedor (humanização)
+                        light: '#F9F9F9',     // Fundo claro neutro
+                        dark: '#333333',      // Texto principal
+                        'dark-muted': '#5A6872',
+                        border: '#E2E8F0',
+                    },
+                    fontFamily: {
+                        heading: ['DM Serif Display', 'serif'],
+                        body: ['Inter', 'sans-serif'],
+                        accentFont: ['Cormorant Garamond', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333333;
+            background-color: #F9F9F9;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'DM Serif Display', serif;
+        }
+        .font-accent {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .card-shadow {
+            box-shadow: 0 6px 18px rgba(15, 75, 90, 0.06);
+        }
+        .card-hover-shadow:hover {
+            box-shadow: 0 12px 28px rgba(0, 156, 59, 0.12);
+        }
+        .timeline-line {
+            background: rgba(0, 100, 177, 0.15);
+        }
+        .timeline-fill {
+            background: #0F4B5A;
+        }
+        html {
+            scroll-padding-top: 80px;
+        }
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(15,75,90,0.75) 0%, rgba(0,100,177,0.55) 100%);
+        }
+    </style>
+    <base target="_blank">
+    <base target="_blank">
+</head>
+<body>
+
+<!-- Navbar institucional -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+    <div class="container mx-auto px-6 flex items-center justify-between h-20">
+        <a href="#" class="flex items-center gap-2 cursor-pointer" id="logo-link">
+            <div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
+                <span class="text-white font-bold text-sm font-heading">PET</span>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-[15px] font-bold text-primary leading-tight font-heading">Saúde Digital</span>
+                <span class="text-[11px] text-dark/60 leading-tight">MESM · UNCISAL</span>
+            </div>
+        </a>
+        <div class="hidden md:flex items-center gap-1">
+            <a href="#sobre" class="nav-link px-3 py-2 text-[14px] font-medium text-dark/70 hover:text-primary rounded-lg hover:bg-primary/10 transition-all">Sobre</a>
+            <a href="#tagcloud" class="nav-link px-3 py-2 text-[14px] font-medium text-dark/70 hover:text-primary rounded-lg hover:bg-primary/10 transition-all">Áreas</a>
+            <a href="#equipe" class="nav-link px-3 py-2 text-[14px] font-medium text-dark/70 hover:text-primary rounded-lg hover:bg-primary/10 transition-all">Equipe</a>
+            <a href="#objetivos" class="nav-link px-3 py-2 text-[14px] font-medium text-dark/70 hover:text-primary rounded-lg hover:bg-primary/10 transition-all">Objetivos</a>
+            <a href="#cronograma" class="nav-link px-3 py-2 text-[14px] font-medium text-dark/70 hover:text-primary rounded-lg hover:bg-primary/10 transition-all">Cronograma</a>
+            <a href="#producao" class="nav-link px-3 py-2 text-[14px] font-medium text-dark/70 hover:text-primary rounded-lg hover:bg-primary/10 transition-all">Produção</a>
+            <a href="#resultados" class="nav-link px-3 py-2 text-[14px] font-medium text-dark/70 hover:text-primary rounded-lg hover:bg-primary/10 transition-all">Resultados</a>
+            <a href="#contato" class="nav-link px-3 py-2 text-[14px] font-medium text-dark/70 hover:text-primary rounded-lg hover:bg-primary/10 transition-all">Contato</a>
+        </div>
+        <button id="menu-btn" class="md:hidden p-2 text-primary focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-border shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex flex-col gap-2">
+            <a href="#sobre" class="mobile-nav-link px-4 py-3 text-[15px] font-medium text-dark/70 hover:text-primary hover:bg-primary/10 rounded-lg">Sobre</a>
+            <a href="#tagcloud" class="mobile-nav-link px-4 py-3 text-[15px] font-medium text-dark/70 hover:text-primary hover:bg-primary/10 rounded-lg">Áreas</a>
+            <a href="#equipe" class="mobile-nav-link px-4 py-3 text-[15px] font-medium text-dark/70 hover:text-primary hover:bg-primary/10 rounded-lg">Equipe</a>
+            <a href="#objetivos" class="mobile-nav-link px-4 py-3 text-[15px] font-medium text-dark/70 hover:text-primary hover:bg-primary/10 rounded-lg">Objetivos</a>
+            <a href="#cronograma" class="mobile-nav-link px-4 py-3 text-[15px] font-medium text-dark/70 hover:text-primary hover:bg-primary/10 rounded-lg">Cronograma</a>
+            <a href="#producao" class="mobile-nav-link px-4 py-3 text-[15px] font-medium text-dark/70 hover:text-primary hover:bg-primary/10 rounded-lg">Produção</a>
+            <a href="#resultados" class="mobile-nav-link px-4 py-3 text-[15px] font-medium text-dark/70 hover:text-primary hover:bg-primary/10 rounded-lg">Resultados</a>
+            <a href="#contato" class="mobile-nav-link px-4 py-3 text-[15px] font-medium text-dark/70 hover:text-primary hover:bg-primary/10 rounded-lg">Contato</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero com vídeo de fundo -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <video class="absolute top-0 left-0 w-full h-full object-cover z-0" autoplay loop muted playsinline>
+        <source src="video.mp4" type="video/mp4">
+    </video>
+    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/80 via-accent/60 to-primary/70 z-10"></div>
+    <div class="container mx-auto px-6 relative z-20 text-center text-white">
+        <!-- Logo PET Saúde Digital -->
+        <div class="mb-6">
+            <div class="inline-block bg-white/15 backdrop-blur-sm rounded-2xl p-4 border border-white/20 shadow-xl">
+                <img src="petsaude.png" alt="PET Saúde Digital" class="h-28 w-auto mx-auto object-contain rounded-xl">
+            </div>
+        </div>
+
+        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full text-[13px] font-medium mb-6">
+            <i class="fas fa-graduation-cap text-sm"></i>
+            <span>Programa de Educação pelo Trabalho para a Saúde - UNCISAL</span>
+        </div>
+        <h1 class="text-[40px] lg:text-[64px] font-bold leading-[1.15] mb-4 font-heading">
+            PET Saúde Digital<br>
+            <span class="text-warm">Maternidade Santa Mônica</span>
+        </h1>
+        <p class="text-[18px] lg:text-[22px] text-white/90 leading-relaxed mb-6 max-w-2xl mx-auto">
+            Transformando a assistência materno-infantil através da inovação digital, pesquisa e educação.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3 mb-8">
+            <span class="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-3.5 py-2 text-[14px]"><span>🗓️</span> 2025–2026</span>
+            <span class="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-3.5 py-2 text-[14px]"><span>🏥</span> MESM</span>
+            <span class="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-3.5 py-2 text-[14px]"><span>🎓</span> UNCISAL</span>
+        </div>
+        <a href="#cronograma" class="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white px-7 py-3.5 rounded-lg text-[16px] font-semibold transition-all shadow-lg">
+            Conheça Nossa Jornada <i class="fas fa-arrow-right text-sm"></i>
+        </a>
+
+        <!-- Logos parceiras -->
+        <div class="mt-10 flex items-center justify-center gap-4 md:gap-6">
+            <div class="bg-white/15 backdrop-blur-sm rounded-xl p-3 border border-white/15 hover:bg-white/25 transition-all duration-300">
+                <img src="MESM.png" alt="Maternidade Santa Mônica" class="h-12 md:h-14 w-auto object-contain rounded-lg" title="Maternidade Santa Mônica">
+            </div>
+            <div class="bg-white/20 backdrop-blur-sm rounded-xl p-3 border border-white/20 hover:bg-white/30 transition-all duration-300 scale-105">
+                <img src="uncisal.png" alt="UNCISAL" class="h-14 md:h-16 w-auto object-contain rounded-lg" title="UNCISAL">
+            </div>
+            <div class="bg-white/15 backdrop-blur-sm rounded-xl p-3 border border-white/15 hover:bg-white/25 transition-all duration-300">
+                <img src="gov.png" alt="Governo Federal" class="h-10 md:h-12 w-auto object-contain rounded-lg" title="Governo Federal do Brasil">
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Sobre (seção 1) -->
+<section id="sobre" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="mb-12 text-center">
+            <span class="text-[12px] font-semibold tracking-[2px] text-secondary uppercase">Sobre o Programa</span>
+            <h2 class="text-[32px] lg:text-[40px] font-bold text-primary mt-3">O que é o PET Saúde Digital?</h2>
+            <div class="w-[60px] h-[3px] bg-secondary mx-auto mt-4"></div>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-12">
+            <div class="space-y-5">
+                <p class="text-[16px] leading-[1.7] text-dark">O PET Saúde Digital é um Programa de Educação pelo Trabalho para a Saúde vinculado à Maternidade Santa Mônica (MESM) da Universidade Estadual de Ciências da Saúde de Alagoas (UNCISAL). Nosso grupo trabalha na intersecção entre saúde, tecnologia e educação, buscando soluções inovadoras para a assistência materno-infantil.</p>
+                <p class="text-[16px] leading-[1.7] text-dark">Formado por estudantes de diferentes cursos (bolsistas e não-bolsistas) sob orientação de tutores docentes, o grupo desenvolve atividades de pesquisa, extensão e ensino com foco na digitalização e humanização dos serviços de saúde.</p>
+                <p class="text-[16px] leading-[1.7] text-dark">A Maternidade Santa Mônica é um hospital-escola de referência em assistência materno-infantil, oferecendo um ambiente único para a integração entre prática clínica, pesquisa acadêmica e inovação tecnológica.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-light border border-border rounded-xl p-5 card-shadow hover:card-hover-shadow transition-all"><i class="fas fa-bullseye text-primary text-2xl mb-3 block"></i><h4 class="font-heading text-lg font-semibold mb-1">Missão</h4><p class="text-sm text-dark/70">Integrar tecnologia e cuidado para transformar a experiência de mães e profissionais.</p></div>
+                <div class="bg-light border border-border rounded-xl p-5 card-shadow hover:card-hover-shadow transition-all"><i class="fas fa-eye text-accent text-2xl mb-3 block"></i><h4 class="font-heading text-lg font-semibold mb-1">Visão</h4><p class="text-sm text-dark/70">Ser referência nacional em inovação digital para saúde materno-infantil.</p></div>
+                <div class="bg-light border border-border rounded-xl p-5 card-shadow hover:card-hover-shadow transition-all"><i class="fas fa-heart text-warm text-2xl mb-3 block"></i><h4 class="font-heading text-lg font-semibold mb-1">Valores</h4><p class="text-sm text-dark/70">Pesquisa, colaboração, humanização e excelência acadêmica.</p></div>
+                <div class="bg-light border border-border rounded-xl p-5 card-shadow hover:card-hover-shadow transition-all"><i class="fas fa-trophy text-secondary text-2xl mb-3 block"></i><h4 class="font-heading text-lg font-semibold mb-1">Meta</h4><p class="text-sm text-dark/70">Gerar conhecimento e produtos tecnológicos de impacto na saúde pública.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TagCloud (Áreas de Atuação) - tags atualizadas conforme solicitação -->
+<section id="tagcloud" class="py-20 bg-light">
+    <div class="container mx-auto px-6 max-w-[1100px]">
+        <h2 class="font-heading text-[32px] lg:text-[36px] text-primary text-center mb-12">Áreas de Atuação</h2>
+        <div class="flex justify-center">
+            <canvas id="tag-canvas" class="max-w-full cursor-grab active:cursor-grabbing" width="800" height="500" style="width:800px; height:500px"></canvas>
+        </div>
+        <p class="text-center text-sm text-dark/50 mt-4">Arraste para interagir com a nuvem de tags</p>
+    </div>
+</section>
+
+<!-- Equipe (Carrossel) -->
+<section id="equipe" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-10">
+            <span class="text-[12px] font-semibold tracking-[2px] text-secondary uppercase">Nossa Equipe</span>
+            <h2 class="text-[32px] lg:text-[40px] font-bold text-primary mt-3">Quem Faz Parte do PET</h2>
+            <p class="text-dark/60 mt-2">Petianas, tutores e preceptores que constroem o projeto</p>
+        </div>
+        <div class="relative">
+            <button id="carousel-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 rounded-full bg-white border border-border shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all"><i class="fas fa-chevron-left"></i></button>
+            <button id="carousel-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 rounded-full bg-white border border-border shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all"><i class="fas fa-chevron-right"></i></button>
+            <div class="overflow-hidden mx-4">
+                <div id="team-carousel" class="flex gap-5 transition-transform duration-500 ease-in-out"></div>
+            </div>
+            <div id="carousel-dots" class="flex justify-center gap-2 mt-6"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Objetivos -->
+<section id="objetivos" class="py-20 bg-light">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-12 max-w-2xl mx-auto">
+            <span class="text-[12px] font-semibold tracking-[2px] text-secondary uppercase">Objetivos e Metas</span>
+            <h2 class="text-[32px] lg:text-[40px] font-bold text-primary mt-3">O que Buscamos Alcançar</h2>
+            <p class="text-dark/60 mt-3">Nossas metas estão organizadas em três eixos principais de atuação.</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl p-7 card-shadow border-l-4 border-primary"><i class="fas fa-book-open text-primary text-2xl mb-4 block"></i><h3 class="font-heading text-xl font-semibold mb-4">Ensino e Formação</h3><ul class="space-y-3 text-dark/70 text-sm"><li class="flex gap-2"><i class="fas fa-check-circle text-secondary mt-0.5"></i> Capacitar petianas em metodologias de pesquisa</li><li class="flex gap-2"><i class="fas fa-check-circle text-secondary mt-0.5"></i> Promover integração interdisciplinar</li><li class="flex gap-2"><i class="fas fa-check-circle text-secondary mt-0.5"></i> Desenvolver produtos educacionais</li></ul></div>
+            <div class="bg-white rounded-xl p-7 card-shadow border-l-4 border-accent"><i class="fas fa-flask text-accent text-2xl mb-4 block"></i><h3 class="font-heading text-xl font-semibold mb-4">Pesquisa e Inovação</h3><ul class="space-y-3 text-dark/70 text-sm"><li class="flex gap-2"><i class="fas fa-check-circle text-secondary mt-0.5"></i> Mapear necessidades tecnológicas da MESM</li><li class="flex gap-2"><i class="fas fa-check-circle text-secondary mt-0.5"></i> Desenvolver soluções digitais</li><li class="flex gap-2"><i class="fas fa-check-circle text-secondary mt-0.5"></i> Produzir artigos e patentes</li></ul></div>
+            <div class="bg-white rounded-xl p-7 card-shadow border-l-4 border-warm"><i class="fas fa-users text-warm text-2xl mb-4 block"></i><h3 class="font-heading text-xl font-semibold mb-4">Extensão e Impacto Social</h3><ul class="space-y-3 text-dark/70 text-sm"><li class="flex gap-2"><i class="fas fa-check-circle text-secondary mt-0.5"></i> Rodas de conversa com usuárias</li><li class="flex gap-2"><i class="fas fa-check-circle text-secondary mt-0.5"></i> Vídeos informativos nos setores</li><li class="flex gap-2"><i class="fas fa-check-circle text-secondary mt-0.5"></i> Aplicativo para gestação</li></ul></div>
+        </div>
+    </div>
+</section>
+
+<!-- Timeline (Cronograma) -->
+<section id="cronograma" class="py-20 bg-white">
+    <div class="container mx-auto px-6 max-w-[1100px]">
+        <div class="text-center mb-16">
+            <h2 class="font-heading text-[32px] lg:text-[36px] text-primary mb-4">Nossa Jornada</h2>
+            <p class="font-body text-[16px] text-dark/60 max-w-[600px] mx-auto">Acompanhe a trajetória do PET Saúde Digital na Maternidade Santa Mônica.</p>
+        </div>
+        <div id="timeline-wrapper" class="relative"></div>
+    </div>
+</section>
+
+<!-- Produção -->
+<section id="producao" class="py-20 bg-light">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+            <span class="text-[12px] font-semibold tracking-[2px] text-secondary uppercase">Produção e Resultados</span>
+            <h2 class="text-[32px] lg:text-[40px] font-bold text-primary mt-3">Ciência e Tecnologia em Ação</h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="border border-border rounded-xl p-8 hover:shadow-xl transition-all bg-white"><div class="flex justify-between items-start mb-5"><div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center"><i class="fas fa-mobile-alt text-primary text-2xl"></i></div><span class="text-[11px] font-semibold px-3 py-1 rounded-full bg-primary/10 text-primary">EM DESENVOLVIMENTO</span></div><h3 class="font-heading text-xl font-semibold mb-3">Aplicativo Mamãe Gouchi</h3><p class="text-dark/70 mb-4">Aplicativo mobile para apoio às gestantes e mães durante internação e pós-parto.</p><ul><li class="flex gap-2"><span class="w-1.5 h-1.5 rounded-full bg-secondary mt-2"></span><span class="text-sm text-dark/60">Protótipo funcional apresentado em maio/2026</span></li></ul></div>
+            <div class="border border-border rounded-xl p-8 hover:shadow-xl transition-all bg-white"><div class="flex justify-between items-start mb-5"><div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center"><i class="fas fa-globe text-primary text-2xl"></i></div><span class="text-[11px] font-semibold px-3 py-1 rounded-full bg-primary/10 text-primary">EM DESENVOLVIMENTO</span></div><h3 class="font-heading text-xl font-semibold mb-3">Site Repositório</h3><p class="text-dark/70 mb-4">Plataforma web para centralização e divulgação dos produtos e materiais educacionais.</p></div>
+            <div class="border border-border rounded-xl p-8 hover:shadow-xl transition-all bg-white"><div class="flex justify-between items-start mb-5"><div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center"><i class="fas fa-chart-line text-primary text-2xl"></i></div><span class="text-[11px] font-semibold px-3 py-1 rounded-full bg-secondary/20 text-secondary">CONCLUÍDO</span></div><h3 class="font-heading text-xl font-semibold mb-3">Diagnóstico da MESM</h3><p class="text-dark/70 mb-4">Mapeamento completo de 63 setores com análise das necessidades tecnológicas.</p><ul><li class="flex gap-2"><span class="w-1.5 h-1.5 rounded-full bg-secondary mt-2"></span><span class="text-sm text-dark/60">670 respondentes (363 usuárias + 307 profissionais)</span></li></ul></div>
+            <div class="border border-border rounded-xl p-8 hover:shadow-xl transition-all bg-white"><div class="flex justify-between items-start mb-5"><div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center"><i class="fas fa-file-alt text-primary text-2xl"></i></div><span class="text-[11px] font-semibold px-3 py-1 rounded-full bg-warm/20 text-warm">EM ANDAMENTO</span></div><h3 class="font-heading text-xl font-semibold mb-3">Artigos e Publicações</h3><p class="text-dark/70 mb-4">Elaboração de artigos científicos a partir dos dados coletados.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Resultados -->
+<section id="resultados" class="py-20 bg-primary text-white">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+            <span class="text-[12px] font-semibold tracking-[2px] text-white/70 uppercase">Impacto do Projeto</span>
+            <h2 class="text-[32px] lg:text-[40px] font-bold mt-3">Resultados que Fazem a Diferença</h2>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="text-center border-b-2 border-white/20 pb-5"><div class="text-[42px] lg:text-[48px] font-bold" data-count="670">0</div><div class="text-sm font-medium">Total de respondentes</div><div class="text-xs text-white/60">363 usuárias + 307 profissionais</div></div>
+            <div class="text-center border-b-2 border-white/20 pb-5"><div class="text-[42px] lg:text-[48px] font-bold" data-count="63">0</div><div class="text-sm font-medium">Setores da MESM</div><div class="text-xs text-white/60">Mapeados e analisados</div></div>
+            <div class="text-center border-b-2 border-white/20 pb-5"><div class="text-[42px] lg:text-[48px] font-bold" data-count="4">0</div><div class="text-sm font-medium">Semestres de atividades</div><div class="text-xs text-white/60">Realizadas com dedicação</div></div>
+            <div class="text-center border-b-2 border-white/20 pb-5"><div class="text-[42px] lg:text-[48px] font-bold" data-count="2">0</div><div class="text-sm font-medium">Produtos tecnológicos</div><div class="text-xs text-white/60">Em desenvolvimento</div></div>
+        </div>
+        <div class="max-w-[600px] mx-auto">
+            <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 text-center">
+                <div class="text-[48px] mb-3">🎉</div>
+                <h3 class="text-[22px] font-bold mb-3">Coleta Concluída com Sucesso!</h3>
+                <p class="text-[15px] text-white/80 leading-relaxed mb-4">Em 23 de fevereiro de 2026, alcançamos nossa amostra final com 363 usuárias e 307 profissionais da MESM, totalizando 670 respondentes.</p>
+                <div class="text-lg font-semibold text-warm">23/02/2026</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contato -->
+<section id="contato" class="py-20 bg-white">
+    <div class="container mx-auto px-6 max-w-3xl text-center">
+        <h2 class="font-heading text-[32px] lg:text-[40px] text-primary mb-6">Entre em Contato</h2>
+        <p class="text-dark/70 mb-8">Dúvidas, sugestões ou parcerias? Fale com a equipe do PET Saúde Digital.</p>
+        <div class="flex flex-col items-center gap-4">
+            <a href="mailto:petsaudedigital@uncisal.edu.br" class="inline-flex items-center gap-2 text-primary hover:text-secondary transition-colors"><i class="fas fa-envelope"></i> petsaudedigital@uncisal.edu.br</a>
+            <div class="flex gap-4 text-primary"><i class="fab fa-instagram text-2xl hover:text-secondary transition-colors cursor-pointer"></i><i class="fab fa-linkedin-in text-2xl hover:text-secondary transition-colors cursor-pointer"></i><i class="fab fa-youtube text-2xl hover:text-secondary transition-colors cursor-pointer"></i></div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark pt-16 pb-8 text-white/70">
+    <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-3 gap-10 mb-10">
+            <div><div class="mb-4"><span class="text-[20px] font-bold text-white block font-heading">PET Saúde Digital</span><span class="text-[14px]">Maternidade Santa Mônica</span></div><p class="text-[14px] leading-relaxed mb-4">Programa de Educação pelo Trabalho para a Saúde vinculado à UNCISAL e à Maternidade Santa Mônica.</p><a href="https://www.uncisal.edu.br" target="_blank" class="text-[14px] hover:text-white transition">UNCISAL</a></div>
+            <div><h4 class="text-[16px] font-semibold text-white mb-4 font-heading">Navegação</h4><div class="flex flex-col gap-2"><a href="#sobre" class="text-[14px] hover:text-white transition">Sobre</a><a href="#tagcloud" class="text-[14px] hover:text-white transition">Áreas</a><a href="#equipe" class="text-[14px] hover:text-white transition">Equipe</a><a href="#objetivos" class="text-[14px] hover:text-white transition">Objetivos</a><a href="#cronograma" class="text-[14px] hover:text-white transition">Cronograma</a><a href="#producao" class="text-[14px] hover:text-white transition">Produção</a><a href="#resultados" class="text-[14px] hover:text-white transition">Resultados</a></div></div>
+            <div><h4 class="text-[16px] font-semibold text-white mb-4 font-heading">Contato</h4><p class="text-[14px]">petsaudedigital@uncisal.edu.br</p><p class="text-[14px]">Maternidade Santa Mônica — Maceió, AL</p></div>
+        </div>
+        <div class="border-t border-white/10 pt-6 text-center"><p class="text-[13px]">© 2025-2026 PET Saúde Digital - UNCISAL. Todos os direitos reservados.</p><p class="text-[12px]">Desenvolvido com dedicação pelos petianos de Medicina e Sistemas de Informação.</p></div>
+    </div>
+</footer>
+
+<script>
+    // ==================== LENIS SCROLL ====================
+    const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+
+    // ==================== TIMELINE (GSAP + dados) ====================
+    const timelineEntries = [
+        { date: '13/08/2025', title: 'Criação do Grupo', description: 'Grupo de WhatsApp criado para comunicação da equipe.', side: 'left', phase: 1 },
+        { date: '20/08/2025', title: 'Reunião com a Direção da MESM', description: 'Reunião de alinhamento com Gva e Direção para alinhar os pontos estratégicos para desenvolvimento das atividades.', side: 'right', phase: 1 },
+        { date: '01/09/2025', title: '1ª Reunião Oficial', description: 'Definição dos grupos de questionário, (Reuniões para alinhamento estratégico em formato presencial e online. Criação de dois grupos de whatsapp, Usuários e Profissionais).', side: 'left', phase: 1 },
+        { date: '02/09/2025', title: 'Cartão de Vacina', description: 'Solicitação de cartão de vacina para entrada na MESM.', side: 'right', phase: 1 },
+        { date: '04/09/2025', title: 'Grupos de WhatsApp', description: 'Criação de grupos separados: profissionais e usuárias.', side: 'left', phase: 1 },
+        { date: '17/09/2025', title: 'Alinhamento dos Questionários', description: 'Foco em tecnologias e soluções digitais.', side: 'right', phase: 2 },
+        { date: '02/10/2025', title: 'Definição dos Turnos', description: 'Segunda e quarta 13h-17h, sábado 8h-12h e 13h-17h.', side: 'left', phase: 2 },
+        { date: '03/10/2025', title: 'Entrega dos Crachás', description: 'Crachás entregues. Orientações sobre vestimenta.', side: 'right', phase: 2 },
+        { date: '06/10/2025', title: 'Início da Coleta', description: 'Início da coleta de dados na Maternidade Santa Mônica.', side: 'left', phase: 3 },
+        { date: '10/10/2025', title: 'Reuniões com Técnicos dos Setores', description: 'Entrevistas com pessoas chaves com insights específicos e operacionais coletados diretamente dos técnicos e profissionais em seus setores. Diferentemente do levantamento por formulário (abordagem ampla), este oferece demandas concretas e acionáveis com soluções já pensadas pelos próprios usuários', side: 'right', phase: 3 },
+        { date: '13/10/2025', title: 'Migração para Google Forms', description: 'Migração devido ao limite do Jotform.', side: 'left', phase: 3 },
+        { date: '13/10/2025', title: 'Imprevisto', description: 'Aluna Ana Lúcia torce o pé na MESM — afastamento orientado.', side: 'right', phase: 3 },
+        { date: '15/10/2025', title: 'Reunião com Desenvolvedor', description: 'Reunião online com o desenvolvedor – discussão sobre ICP-Brasil e conformidade com conselhos (CFM, Cofen).', side: 'left', phase: 3 },
+        { date: '20/10/2025', title: 'Mapeamento dos Setores', description: 'Mapeamento de 63 setores da MESM.', side: 'right', phase: 3 },
+        { date: '23/10/2025', title: 'Identificação de Problemas nos Fluxos', description: 'Identificação de problemas nos fluxos de produção das pulseiras do RN.', side: 'left', phase: 3 },
+        { date: '25/10/2025', title: 'Precariedade na Inserção de Eventos Adversos', description: 'Identificada a precariedade da inserção dos dados de eventos adversos (realizado através do forms).', side: 'right', phase: 3 },
+        { date: '26/10/2025', title: 'Banco de Leite', description: 'Identificado grande problema de eficiência (muito papel no banco de leite) — sugestão de criação de chatbot para atendimento.', side: 'left', phase: 3 },
+        { date: '25/11/2025', title: 'Rodas de Conversa', description: 'Início das rodas de conversa com usuárias.', side: 'right', phase: 3 },
+        { date: '26/11/2025', title: 'TVs Informativas', description: 'Tentativa de uso das TVs da MESM para vídeos informativos.', side: 'left', phase: 3 },
+        { date: '01/12/2025', title: 'Eventos Adversos', description: 'Preparação de apresentação sobre sistema de eventos adversos.', side: 'right', phase: 4 },
+        { date: '01/12/2025', title: 'Diagnóstico Parcial', description: 'Preparação de slides sobre diagnóstico parcial.', side: 'left', phase: 4 },
+        { date: '12/12/2025', title: 'Capacitação CTM3', description: 'Capacitação com aluna de mestrado — técnica CTM3.', side: 'right', phase: 4 },
+        { date: '23/03/2026', title: 'Entrega de Relatórios Técnicos', description: 'Entrega de relatórios técnicos (eventos adversos e pulseirinhas do RN).', side: 'left', phase: 4 },
+        { date: '07/02/2026', title: 'Maratona de Pesquisa', description: 'Uso de planilha compartilhada e nove bases internacionais.', side: 'right', phase: 5 },
+        { date: '23/02/2026', title: 'Amostra Final', description: 'Amostra final: 363 usuárias / 307 profissionais.', side: 'left', phase: 5 },
+        { date: '06/05/2026', title: 'Mamãe Gouchi', description: 'Alunos de SI apresentam protótipo do aplicativo Mamãe Gouchi.', side: 'right', phase: 5 }
+    ];
+    const phaseGroups = [
+        { title: 'Fase 2: Elaboração dos Questionários', afterIndex: 4, color: '#009C3B', icon: 'clipboard-list' },
+        { title: 'Fase 3: Coleta de Dados e Rodas de Conversa', afterIndex: 7, color: '#0F4B5A', icon: 'database' },
+        { title: 'Fase 4: Produção Científica e Tecnológica', afterIndex: 17, color: '#F39C12', icon: 'flask' },
+        { title: 'Fase 5: Consolidação e Transição', afterIndex: 21, color: '#0064B1', icon: 'arrow-right' }
+    ];
+
+    function renderTimeline() {
+        const wrapper = document.getElementById('timeline-wrapper');
+        wrapper.innerHTML = '';
+        const phase1Div = document.createElement('div');
+        phase1Div.className = 'relative flex justify-center mb-12';
+        phase1Div.innerHTML = `<div class="w-[520px] max-w-[90%] rounded-lg p-6 text-center" style="background:rgba(15,75,90,0.06); border-left:3px solid #0F4B5A"><div class="flex items-center justify-center gap-2 text-primary mb-1"><i class="fas fa-tasks"></i><span class="font-body text-[13px] font-semibold uppercase tracking-wide">Fase 1</span></div><h3 class="font-display text-[20px] text-dark">Início e Organização</h3></div>`;
+        wrapper.appendChild(phase1Div);
+        for (let i = 0; i < timelineEntries.length; i++) {
+            const e = timelineEntries[i];
+            const isLeft = e.side === 'left';
+            const entryDiv = document.createElement('div');
+            entryDiv.className = `relative flex items-start mb-[60px]`;
+            entryDiv.innerHTML = `
+                <div class="timeline-card w-full md:w-[420px] ${isLeft ? 'md:mr-auto md:pr-[60px] md:text-right' : 'md:ml-auto md:pl-[60px]'}">
+                    <div class="bg-white rounded-lg p-7 card-shadow" style="border-left:3px solid ${getEntryColor(i)}">
+                        <span class="font-body text-[13px] font-semibold uppercase tracking-wide text-warm">${e.date}</span>
+                        <h3 class="font-display text-[20px] text-dark mt-1">${e.title}</h3>
+                        <p class="font-body text-[15px] leading-relaxed text-dark/60 mt-2">${e.description}</p>
+                    </div>
+                </div>
+                <div class="timeline-dot hidden md:block absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-[3px] z-10" style="background-color:#009C3B; border-color:#F9F9F9; top:24px"></div>
+            `;
+            wrapper.appendChild(entryDiv);
+            const phaseGroup = phaseGroups.find(p => p.afterIndex === i);
+            if (phaseGroup) {
+                const phaseDiv = document.createElement('div');
+                phaseDiv.className = 'relative flex justify-center mb-12';
+                phaseDiv.innerHTML = `<div class="w-[520px] max-w-[90%] rounded-lg p-6 text-center" style="background:${phaseGroup.color}15; border-left:3px solid ${phaseGroup.color}"><div class="flex items-center justify-center gap-2 mb-1" style="color:${phaseGroup.color}"><i class="fas fa-${phaseGroup.icon}"></i><span class="font-body text-[13px] font-semibold uppercase tracking-wide">${phaseGroup.title.split(':')[0]}</span></div><h3 class="font-display text-[20px] text-dark">${phaseGroup.title.split(':').slice(1).join(':').trim()}</h3></div>`;
+                wrapper.appendChild(phaseDiv);
+            }
+        }
+    }
+    function getEntryColor(index) {
+        if (index <= 4) return '#0F4B5A';      // Fase 1: Início e Organização
+        if (index <= 7) return '#009C3B';      // Fase 2: Elaboração dos Questionários
+        if (index <= 17) return '#0F4B5A';     // Fase 3: Coleta de Dados e Rodas de Conversa
+        if (index <= 21) return '#F39C12';     // Fase 4: Produção Científica e Tecnológica
+        return '#0064B1';                      // Fase 5: Consolidação e Transição
+    }
+    renderTimeline();
+    gsap.registerPlugin(ScrollTrigger);
+    const wrapper = document.getElementById('timeline-wrapper');
+    const fillLine = document.createElement('div');
+    fillLine.className = 'hidden md:block absolute left-1/2 top-0 w-1 h-full -translate-x-1/2 rounded-full origin-top timeline-fill';
+    fillLine.style.transform = 'scaleY(0)';
+    wrapper.style.position = 'relative';
+    const bgLine = document.createElement('div');
+    bgLine.className = 'hidden md:block absolute left-1/2 top-0 w-1 h-full -translate-x-1/2 rounded-full timeline-line';
+    wrapper.prepend(bgLine);
+    wrapper.prepend(fillLine);
+    gsap.to(fillLine, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: wrapper, start: 'top 75%', end: 'bottom 25%', scrub: true } });
+    document.querySelectorAll('.timeline-card').forEach((card, idx) => {
+        const isLeft = timelineEntries[idx]?.side === 'left';
+        gsap.from(card, { x: isLeft ? -60 : 60, opacity: 0, duration: 0.8, scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none reverse' } });
+    });
+    document.querySelectorAll('.timeline-dot').forEach((dot, idx) => {
+        gsap.fromTo(dot, { scale: 0 }, { scale: 1, duration: 0.4, scrollTrigger: { trigger: dot, start: 'top 85%', onEnter: () => dot.style.backgroundColor = '#0F4B5A', onLeaveBack: () => dot.style.backgroundColor = '#009C3B' } });
+    });
+
+    // ==================== TAG CLOUD ATUALIZADA ====================
+    // Lista de tags conforme solicitado: gestação, puerpério, recém-nascido, mãe, educação + tecnologia, sistemas, gamificação
+    const tagsList = [
+        'Gestação', 'Puerpério', 'Recém-nascido', 'Mãe', 'Educação',
+        'Tecnologia', 'Sistemas', 'Gamificação',
+        'Pré-natal', 'Amamentação', 'Parto humanizado', 'Cuidados com o bebê',
+        'Saúde materna', 'Aleitamento', 'Vínculo mãe-bebê', 'Desenvolvimento infantil',
+        'Apoio emocional', 'Nutrição na gestação', 'Exercícios para gestantes'
+    ];
+    const colorsTags = ['#0F4B5A','#009C3B','#F39C12','#0064B1','#3D405B','#5A6872'];
+
+    const canvasTag = document.getElementById('tag-canvas');
+    const ctxTag = canvasTag.getContext('2d');
+    let widthTag = 800, heightTag = 500;
+    canvasTag.width = widthTag; canvasTag.height = heightTag;
+    const cxTag = widthTag/2, cyTag = heightTag/2, radiusTag = 180;
+    let tagsObj = tagsList.map((text,i) => {
+        const phi = Math.acos(1 - (2*(i+0.5))/tagsList.length);
+        const theta = Math.PI * (1+Math.sqrt(5)) * i;
+        const x = radiusTag * Math.sin(phi) * Math.cos(theta);
+        const y = radiusTag * Math.sin(phi) * Math.sin(theta);
+        const z = radiusTag * Math.cos(phi);
+        return { text, color: colorsTags[i%colorsTags.length], x,y,z, curX:0, curY:0, curZ:0, targetX:0, targetY:0, targetZ:0 };
+    });
+    let rotXTag=0, rotYTag=0, velXTag=0, velYTag=0, isDraggingTag=false, lastMXTag=0, lastMYTag=0;
+    const dragFactorTag=0.005, autoRotYTag=0.003, springKTag=0.08, dampingTag=0.92, perspectiveTag=600;
+    function animateTagsCloud() {
+        if (!ctxTag) return;
+        ctxTag.clearRect(0,0,widthTag,heightTag);
+        if (!isDraggingTag) velYTag += autoRotYTag*0.1;
+        rotXTag += velXTag; rotYTag += velYTag;
+        velXTag *= dampingTag; velYTag *= dampingTag;
+        for (let t of tagsObj) {
+            const cosY=Math.cos(rotYTag), sinY=Math.sin(rotYTag), cosX=Math.cos(rotXTag), sinX=Math.sin(rotXTag);
+            let rx = t.x*cosY - t.z*sinY, rz = t.x*sinY + t.z*cosY, ry = t.y;
+            let fy = ry*cosX - rz*sinX, fz = ry*sinX + rz*cosX, fx = rx;
+            t.targetX = fx; t.targetY = fy; t.targetZ = fz;
+            t.curX += (t.targetX - t.curX)*springKTag;
+            t.curY += (t.targetY - t.curY)*springKTag;
+            t.curZ += (t.targetZ - t.curZ)*springKTag;
+        }
+        const sorted = [...tagsObj].sort((a,b)=>a.curZ-b.curZ);
+        for (let t of sorted) {
+            const scale = perspectiveTag/(perspectiveTag + t.curZ);
+            const sx = cxTag + t.curX*scale, sy = cyTag + t.curY*scale;
+            const fontSize = Math.max(11, 18*scale), alpha = Math.max(0.3, Math.min(1, (t.curZ+radiusTag)/(2*radiusTag)));
+            ctxTag.globalAlpha = alpha;
+            ctxTag.font = `600 ${fontSize}px Inter, sans-serif`;
+            ctxTag.fillStyle = t.color;
+            ctxTag.textAlign = 'center'; ctxTag.textBaseline = 'middle';
+            ctxTag.fillText(t.text, sx, sy);
+        }
+        ctxTag.globalAlpha = 1;
+        requestAnimationFrame(animateTagsCloud);
+    }
+    function handleMouseDownTag(e) { isDraggingTag=true; const rect=canvasTag.getBoundingClientRect(); lastMXTag=(e.clientX||e.touches[0].clientX)-rect.left; lastMYTag=(e.clientY||e.touches[0].clientY)-rect.top; }
+    function handleMouseMoveTag(e) { if(!isDraggingTag)return; const rect=canvasTag.getBoundingClientRect(); const mx=(e.clientX||e.touches[0].clientX)-rect.left, my=(e.clientY||e.touches[0].clientY)-rect.top; velYTag+=(mx-lastMXTag)*dragFactorTag; velXTag+=(my-lastMYTag)*dragFactorTag; lastMXTag=mx; lastMYTag=my; }
+    function handleMouseUpTag() { isDraggingTag=false; }
+    canvasTag.addEventListener('mousedown', handleMouseDownTag);
+    window.addEventListener('mousemove', handleMouseMoveTag);
+    window.addEventListener('mouseup', handleMouseUpTag);
+    canvasTag.addEventListener('touchstart', handleMouseDownTag);
+    canvasTag.addEventListener('touchmove', handleMouseMoveTag);
+    canvasTag.addEventListener('touchend', handleMouseUpTag);
+    animateTagsCloud();
+
+    // ==================== EQUIPE CARROSSEL ====================
+    const petianas = [
+        {name:"Engels (Guinho)",course:"Sistemas de Informação",period:"Bolsista",image:"participantes/Engels.png"},
+        {name:"Nilton Marques",course:"Contabilidade / SI",period:"Bolsista",image:"participantes/Nilton.png"},
+        {name:"David Sala",course:"Sistemas de Informação",period:"Bolsista",image:"participantes/david.png"},
+        {name:"Yasmim Castilho",course:"Saúde",period:"Bolsista",image:"participantes/Yasmim.png"},
+        {name:"Ana Lúcia",course:"Radiologia",period:"Bolsista",image:"participantes/ana_lucia.png"},
+        {name:"Clarysse",course:"Saúde",period:"Bolsista",image:"participantes/Clarysse.png"},
+        {name:"Thalita Karol",course:"Saúde",period:"Bolsista",image:"participantes/Thalita_Karol.png"},
+        {name:"Carynne Custódio",course:"Saúde",period:"Não-bolsista",image:"participantes/carynne.png"},
+        {name:"João Vitor",course:"Saúde",period:"Não-bolsista",image:"participantes/joão_vitor.png"},
+        {name:"Túlio",course:"Saúde",period:"Não-bolsista",image:"participantes/Túlio.png"}
+    ];
+    const tutores = [
+        {name:"Profa. Vanessa",area:"Coordenadora do PET",role:"Tutora",image:"participantes/professora_vanessa.png"},
+        {name:"Prof. Alex",area:"Tutor - SI",role:"Tutor",image:"participantes/professor_alex.png"},
+        {name:"Ana Carla",area:"Preceptora (MESM)",role:"Preceptora",image:"participantes/ana.png"},
+        {name:"Amanda Tin Pe",area:"Preceptora",role:"Preceptora",image:"participantes/amanda.png"},
+        {name:"Sandra",area:"Preceptora",role:"Preceptora",image:"participantes/Sandra.png"}
+    ];
+    const allMembers = [...petianas, ...tutores];
+    const carousel = document.getElementById('team-carousel');
+    function renderCarousel() {
+        carousel.innerHTML = allMembers.map(m => {
+            const imgHtml = m.image
+                ? `<img src="${m.image}" alt="${m.name}" class="w-20 h-20 rounded-full object-cover mx-auto mb-3 border-2 border-primary/20 shadow-sm">`
+                : `<div class="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mx-auto mb-3"><span class="text-white text-[20px] font-bold">${m.name.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase()}</span></div>`;
+            return `<div class="team-card flex-shrink-0 w-[280px] bg-white border border-border rounded-xl p-5 card-shadow hover:card-hover-shadow hover:scale-[1.02] transition-all text-center">${imgHtml}<h4 class="font-heading text-[15px] font-semibold mb-1">${m.name}</h4><p class="text-secondary text-[14px] font-medium">${m.course || m.area}</p><p class="text-dark/60 text-[13px] mb-2">${m.period || m.role}</p><span class="inline-block text-[12px] font-medium px-2.5 py-0.5 rounded-full bg-primary/10 text-primary">${m.period || m.role}</span></div>`;
+        }).join('');
+        setupCarousel();
+    }
+    let currentIndex=0, cardWidth=300, visibleCards=3;
+    function updateCarousel() { carousel.style.transform = `translateX(-${currentIndex * cardWidth}px)`; const maxIndex=Math.max(0,allMembers.length-visibleCards); document.getElementById('carousel-prev').style.opacity=currentIndex<=0?'0.3':'1'; document.getElementById('carousel-next').style.opacity=currentIndex>=maxIndex?'0.3':'1'; const dotsContainer=document.getElementById('carousel-dots'); const totalDots=Math.ceil(allMembers.length/visibleCards); dotsContainer.innerHTML=Array.from({length:totalDots},(_,i)=>`<button class="w-2 h-2 rounded-full transition-all ${i===Math.floor(currentIndex/visibleCards)?'bg-primary w-6':'bg-gray-300'}" data-index="${i}"></button>`).join(''); document.querySelectorAll('.carousel-dot').forEach((dot,i)=>{dot.addEventListener('click',()=>{currentIndex=Math.min(Math.max(0,allMembers.length-visibleCards),i*visibleCards); updateCarousel();});}); }
+    function setupCarousel(){ cardWidth=300; const container=carousel.parentElement; const containerWidth=container.offsetWidth; visibleCards=Math.max(1,Math.floor(containerWidth/cardWidth)); updateCarousel(); }
+    window.addEventListener('resize',setupCarousel);
+    document.getElementById('carousel-next').addEventListener('click',()=>{const maxIndex=Math.max(0,allMembers.length-visibleCards); if(currentIndex<maxIndex){currentIndex=Math.min(maxIndex,currentIndex+visibleCards); updateCarousel();}});
+    document.getElementById('carousel-prev').addEventListener('click',()=>{if(currentIndex>0){currentIndex=Math.max(0,currentIndex-visibleCards); updateCarousel();}});
+    renderCarousel();
+
+    // Contadores animados
+    const counters = document.querySelectorAll('[data-count]');
+    const observerCounters = new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){const counter=entry.target; const target=parseInt(counter.getAttribute('data-count')); let current=0; const increment=Math.ceil(target/40); const interval=setInterval(()=>{current+=increment; if(current>=target){counter.innerText=target; clearInterval(interval);}else{counter.innerText=current;}},25); observerCounters.unobserve(counter);}});},{threshold:0.5});
+    counters.forEach(c=>observerCounters.observe(c));
+
+    // menu mobile + scroll suave
+    const menuBtn=document.getElementById('menu-btn'), mobileMenu=document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click',()=>mobileMenu.classList.toggle('hidden'));
+    document.querySelectorAll('.mobile-nav-link, .nav-link').forEach(link=>link.addEventListener('click',()=>mobileMenu.classList.add('hidden')));
+    window.addEventListener('scroll',()=>{const navbar=document.getElementById('navbar'); if(window.scrollY>50) navbar.classList.add('bg-white/90','backdrop-blur-md','shadow-md'); else navbar.classList.remove('bg-white/90','backdrop-blur-md','shadow-md');});
+    document.querySelectorAll('a[href^="#"]').forEach(anchor=>anchor.addEventListener('click',function(e){const href=this.getAttribute('href'); if(href==='#')return; const target=document.querySelector(href); if(target){e.preventDefault(); lenis.scrollTo(target,{offset:-80});}}));
+</script>
+</body>
+</html>
